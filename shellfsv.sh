@@ -14,6 +14,7 @@ fi
 if [ "$1" = "--lireconfig" ] || [ "$1" = "-lc" ]
     then
         echo $API_LIRE_CONFIG
+        curl -X GET "$API_LIRE_CONFIG?terminalId=$TERMINAL_ID" -H  "accept: application/json; charset=UTF-8" -H  "accessHealthcareToken: $TOKEN"
 fi
 
 if [ "$1" = "--lirecarteps" ] || [ "$1" = "-lcps" ]

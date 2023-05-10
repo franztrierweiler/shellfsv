@@ -1,7 +1,6 @@
 # Base values
 TOKEN=""
-NUMERO_SERIE=""
-EXPIRATION_TIME=""
+TERMINAL_ID=""
 TARGET="https://fsv.demo.stellair.fr/"
 API_VERSION="fsv/1.40.14/"
 CLIENT_ID=""
