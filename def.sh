@@ -1,0 +1,5 @@
+TOKEN=""
+TARGET="https://fsv.demo.stellair.fr/"
+API_VERSION=""
+CLIENT_ID=""
+CLIENT_SECRET=""
