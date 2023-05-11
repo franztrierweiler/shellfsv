@@ -17,11 +17,13 @@ if [ "$1" = "--lireconfig" ] || [ "$1" = "-lc" ]
     then
         TYPE_REQ=GET
         DATA=""
+        API=$API_LIRE_CONFIG
 fi
 
 if [ "$1" = "--lirecarteps" ] || [ "$1" = "-lcps" ]
     then
         TYPE_REQ=POST
+        API=$API_LIRE_CARTE_PS
 
         if [ "$2" = "--turbo" ] || [ "$2" = "-t" ]
             then
@@ -34,6 +36,7 @@ fi
 if [ "$1" = "--liredroitsvitale" ] || [ "$1" = "-lsv" ]
     then
         TYPE_REQ=POST
+        API=$API_LIRE_DROITS_VITALE
 
         if [ "$2" = "--turbo" ] || [ "$2" = "-t" ]
             then
@@ -43,7 +46,13 @@ if [ "$1" = "--liredroitsvitale" ] || [ "$1" = "-lsv" ]
         fi
 fi
 
-curl -v -X $TYPE_REQ "$API_LIRE_CONFIG?terminalId=$TERMINAL_ID" -H  "accept: application/json; charset=UTF-8" -H  "accessHealthcareToken: $HEALTHCARE_TOKEN" -H "Authorization: Bearer $BEARER_TOKEN" -d "$DATA"
+banner "DEBUG"
+echo "$DATA"
+echo "$TYPE_REQ"
+echo "$TERMINAL_ID"
+banner "FIN DEBUG"
+
+curl -v -X $TYPE_REQ "$API?terminalId=$TERMINAL_ID" -H  "accept: application/json; charset=UTF-8" -H  "accessHealthcareToken: $HEALTHCARE_TOKEN" -H "Authorization: Bearer $BEARER_TOKEN" -d "$DATA"
 
 echo "\n"
 exit 0

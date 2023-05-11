@@ -12,11 +12,11 @@ while [ "$i" != "0" ]
 do 
     banner "($c.1) No Turbo"
     sleep 1
-    ./shellfsv.sh -lc >"./out/file_$c"
+    ./shellfsv.sh -lcps >"./out/file_$c"
     cat "./out/file_$c" | jq '.dataResult.data' | sed 's/^.//'| base64 -d
     banner "($c.2) With Turbo"
     sleep 1
-    ./shellfsv.sh -lc -turbo >"./out/file_turbo_$c"
+    ./shellfsv.sh -lcps -turbo >"./out/file_turbo_$c"
     cat "./out/file_turbo_$c" | jq '.dataResult.data' | sed 's/^.//'| base64 -d
     read -p "Next>" i
     ((c=c+1))
