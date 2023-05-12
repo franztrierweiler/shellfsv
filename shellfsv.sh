@@ -40,19 +40,13 @@ if [ "$1" = "--liredroitsvitale" ] || [ "$1" = "-lsv" ]
 
         if [ "$2" = "--turbo" ] || [ "$2" = "-t" ]
             then
-                DATA="{\"codePorteur\":\"1234\",\"mode\":\"1\",\"dateConsultation\":\"2023-05-11\",\"labelCvVirtuelle\": \"0102.IN\"}"
+                DATA="{\"codePorteur\":\"1234\",\"mode\":\"1\",\"dateConsultation\":\"2023-05-12\"}"
             else
-                DATA="{\"codePorteur\":\"1234\"}"
+                DATA="{\"codePorteur\":\"1234\",\"dateConsultation\":\"2023-05-12\"}"
         fi
 fi
 
-banner "DEBUG"
-echo "$DATA"
-echo "$TYPE_REQ"
-echo "$TERMINAL_ID"
-banner "FIN DEBUG"
-
-curl -v -X $TYPE_REQ "$API?terminalId=$TERMINAL_ID" -H  "accept: application/json; charset=UTF-8" -H  "accessHealthcareToken: $HEALTHCARE_TOKEN" -H "Authorization: Bearer $BEARER_TOKEN" -d "$DATA"
+curl -v -X $TYPE_REQ "$API?terminalId=$TERMINAL_ID" -H  "accept: application/json; charset=UTF-8" -H  "accessHealthcareToken: $HEALTHCARE_TOKEN" -H "Authorization: Bearer $BEARER_TOKEN" -H  "Content-Type: application/json" -d "$DATA"
 
 echo "\n"
 exit 0
