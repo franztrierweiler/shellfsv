@@ -14,7 +14,7 @@ do
     cat "./out/file_$date" | jq '.dataResult.data' | sed 's/^.//'| base64 -d
     banner "($c.2) With Turbo"
     sleep 2
-    ./shellfsv.sh -lsv -turbo >"./out/file_turbo_$date"
+    ./shellfsv.sh -lsv -t >"./out/file_turbo_$date"
     cat "./out/file_turbo_$date" | jq '.dataResult.data' | sed 's/^.//'| base64 -d
     read -p "Next>" i
     ((c=c+1))
