@@ -1,0 +1,2 @@
+Sans Turbo, la carte n'est pas lue entièrement.
+En mode Turbo, elle semble être lue entièrement.
