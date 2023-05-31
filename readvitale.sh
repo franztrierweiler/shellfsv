@@ -16,6 +16,7 @@ do
     sleep 2
     ./shellfsv.sh -lsv -t >"./out/file_turbo_$date"
     cat "./out/file_turbo_$date" | jq '.dataResult.data' | sed 's/^.//'| base64 -d
+    diff -sq ./out/file_$date ./out/file_turbo_$date
     read -p "Next>" i
     ((c=c+1))
 done

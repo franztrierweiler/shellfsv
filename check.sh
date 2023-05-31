@@ -12,7 +12,7 @@ do
         target=`echo "$file" | sed 's/file_/&turbo_/'`
         echo "File = $file"q
         echo "Target = $target"
-        diff -q "out/$file" "out/$target" >> result_not_identical_files
+        diff -qs "out/$file" "out/$target" >> result_not_identical_files
 
         cat "out/$file" | grep "{\"codeResult\":0,\"dataResult\"" >> result_no_error
         cat "out/$target" | grep "{\"codeResult\":0,\"dataResult\"" >> result_no_error_turbo
