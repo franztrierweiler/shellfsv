@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Do not use anymore on output files, since output files are now stored in dedicated directories.
+
 nb_files=`ls out/ | wc -l`
 file_list=`ls out/`
 
