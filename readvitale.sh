@@ -8,15 +8,28 @@ c=0
 while [ "$i" != "0" ]
 do 
     date=`date | tr -d ' '`
+
+    read -p "Card name>" card_name
+
+    mkdir out/$card_name
+
     banner "($c.1) No Turbo"
     sleep 1
-    ./shellfsv.sh -lsv >"./out/file_$date"
-    cat "./out/file_$date" | jq '.dataResult.data' | sed 's/^.//'| base64 -d
+    ./shellfsv.sh -lsv >"./out/$card_name/file_$date"
+
+    # Display on screen for NON TURBO then write in file
+    cat "./out/$card_name/file_$date" | jq '.dataResult.data' | sed 's/^.//'| base64 -d
+    cat "./out/$card_name/file_$date" | jq '.dataResult.data' | sed 's/^.//'| base64 -d > ./out/$card_name/file_JSON_$date
+
     banner "($c.2) With Turbo"
     sleep 2
-    ./shellfsv.sh -lsv -t >"./out/file_turbo_$date"
-    cat "./out/file_turbo_$date" | jq '.dataResult.data' | sed 's/^.//'| base64 -d
-    diff -sq ./out/file_$date ./out/file_turbo_$date
+    ./shellfsv.sh -lsv -t >"./out/$card_name/file_turbo_$date"
+
+    # Display on screen for TURBO then write in file
+    cat "./out/$card_name/file_turbo_$date" | jq '.dataResult.data' | sed 's/^.//'| base64 -d
+    cat "./out/$card_name/file_turbo_$date" | jq '.dataResult.data' | sed 's/^.//'| base64 -d > ./out/$card_name/file_turbo_JSON_$date
+
+    diff -sq ./out/$card_name/file_$date ./out//$card_name/file_turbo_$date
     read -p "Next>" i
     ((c=c+1))
 done
